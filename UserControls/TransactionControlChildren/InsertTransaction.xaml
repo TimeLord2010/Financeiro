@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Financeiro.UserControls.TransactionControlChildren.InsertTransaction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Financeiro.UserControls.TransactionControlChildren" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             xmlns:usercontrols="clr-namespace:Financeiro.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="500" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10">
+                <TextBlock Style="{StaticResource TransactionsTBL}">Título</TextBlock>
+                <TextBox x:Name="TitleTB"></TextBox>
+                <TextBlock Style="{StaticResource TransactionsTBL}">Data</TextBlock>
+                <Grid>
+                    <TextBox HorizontalContentAlignment="Right" x:Name="DateMTB"></TextBox>
+                    <TextBlock Margin="5,1,0,0" Foreground="Gray" HorizontalAlignment="Left">00/00/00 00:00</TextBlock>
+                </Grid>
+                <TextBlock Style="{StaticResource TransactionsTBL}">Valor</TextBlock>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CentererTBL}">Dinheiro</TextBlock>
+                    <TextBox Grid.Column="1" Style="{StaticResource TextBoxMargin}" x:Name="DinheiroTB"></TextBox>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource CentererTBL}">Débito</TextBlock>
+                    <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxMargin}" Name="DebitoTB"></TextBox>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource CentererTBL}">Crédito</TextBlock>
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Style="{StaticResource TextBoxMargin}" MinWidth="100" Name="CreditoTB"></TextBox>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource CentererTBL}">Parcelas</TextBlock>
+                        <TextBox Grid.Column="2" Style="{StaticResource TextBoxMargin}" MinWidth="50" Name="ParcelasTB"></TextBox>
+                    </Grid>
+                </Grid>
+                <TextBlock Style="{StaticResource TransactionsTBL}">Provedor</TextBlock>
+                <usercontrols:ChooseEntity x:Name="ProvedorCE" TableName="Entity"></usercontrols:ChooseEntity>
+                <TextBlock Style="{StaticResource TransactionsTBL}">Destinatário</TextBlock>
+                <usercontrols:ChooseEntity x:Name="DestinatarioCE" TableName="Entity"></usercontrols:ChooseEntity>
+                <TextBlock Style="{StaticResource TransactionsTBL}">Descrição</TextBlock>
+                <TextBox Height="50" VerticalScrollBarVisibility="Visible" Name="DescriptionTB"></TextBox>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Style="{StaticResource RedButton}" Name="CancelarB" Click="CancelarB_Click">Cancelar</Button>
+            <Button Style="{StaticResource GreenButton}" Name="InserirB" Click="InserirB_Click">Inserir</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

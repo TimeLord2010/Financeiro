@@ -1,0 +1,16 @@
+﻿<Window x:Class="Financeiro.Managers.UI.SimpleTableElementCreate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financeiro.Managers.UI"
+        mc:Ignorable="d"
+        Title="SimpleTableElementCreate" Height="120" Width="300" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Margin="5">
+            <TextBlock Style="{StaticResource TransactionsTBL}" Margin="0">Nome</TextBlock>
+            <TextBox x:Name="NomeTB"></TextBox>
+            <Button Style="{StaticResource GreenButton}" HorizontalAlignment="Right" x:Name="CriarB" Click="CriarB_Click">Criar</Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+﻿<Window x:Class="Financeiro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financeiro" xmlns:usercontrols="clr-namespace:Financeiro.UserControls"
+        mc:Ignorable="d"
+        Title="Financeiro" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="MyGrid">
+        <TabControl Margin="5" Grid.Row="0">
+            <TabItem Name="TransactionControlTI">
+                <TabItem.Header>
+                    <TextBlock FontSize="14" FontWeight="DemiBold">Transações</TextBlock>
+                </TabItem.Header>
+                <usercontrols:TransactionControl x:Name="TransactionC"></usercontrols:TransactionControl>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock FontSize="14" FontWeight="DemiBold">Entidades</TextBlock>
+                </TabItem.Header>
+                <usercontrols:EntityControl></usercontrols:EntityControl>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock FontSize="14" FontWeight="DemiBold">Mais</TextBlock>
+                </TabItem.Header>
+                <usercontrols:MoreControl></usercontrols:MoreControl>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

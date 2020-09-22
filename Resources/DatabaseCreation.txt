@@ -1,0 +1,152 @@
+DROP TABLE IF EXISTS [Transaction];
+DROP TABLE IF EXISTS [Entity];
+DROP TABLE IF EXISTS [Source];
+DROP TABLE IF EXISTS [Category];
+DROP TABLE IF EXISTS [Settings];
+DROP TABLE IF EXISTS [CategoryRelationship];
+DROP TABLE IF EXISTS [Error];
+DROP TABLE IF EXISTS [Report];
+DROP TABLE IF EXISTS [TransactionReport];
+DROP TABLE IF EXISTS [ToUpload];
+DROP TABLE IF EXISTS [PaymentMethod];
+DROP TABLE IF EXISTS [TransactionPayment];
+
+CREATE TABLE [Entity] (
+	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
+	[Name] TEXT NOT NULL
+);
+
+CREATE TABLE [Source] (
+	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
+	[Name] TEXT NOT NULL
+);
+
+CREATE TABLE [Category] (
+	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
+	[Name] TEXT NOT NULL
+);
+
+CREATE TABLE [Settings] (
+	[Key] TEXT NOT NULL,
+	[Value] TEXT NOT NULL,
+	PRIMARY KEY ([Key])
+);
+
+CREATE TABLE [Transaction] (
+	[RegistrationDate] TEXT PRIMARY KEY NOT NULL,
+	[Title] TEXT NOT NULL,
+	[Description] TEXT NOT NULL,
+	[Amount] REAL NOT NULL,
+	[Date] INTEGER NOT NULL CHECK ([Date] > 0),
+	[Origin] INTEGER,
+	[Destination] INTEGER,
+	[Source] INTEGER,
+	[Category] INTEGER,
+	[IsEnabled] INTEGER NOT NULL DEFAULT 1,
+	FOREIGN KEY([Origin]) REFERENCES [Entity]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY([Destination]) REFERENCES [Entity]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY([Source]) REFERENCES [Source]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY([Category]) REFERENCES [Category]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE [CategoryRelationship] (
+	[RegistrationDate] INTEGER NOT NULL,
+	[Parent] INTEGER NOT NULL,
+	[Child] INTEGER NOT NULL,
+	PRIMARY KEY ([Parent],[Child]),
+	FOREIGN KEY([Parent]) REFERENCES [Category]([RegistrationDate]) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY([Child]) REFERENCES [Category]([RegistrationDate]) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE [Error] (
+	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
+	[Title] TEXT NOT NULL,
+	[StackTrace] TEXT NOT NULL
+);
+
+CREATE TABLE [Report] (
+	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
+	[Content] TEXT NOT NULL,
+	[IncludeDescription] INTEGER NOT NULL,
+	[DateBegin] INTEGER,
+	[DateEnd] INTEGER,
+	[Origin] INTEGER NOT NULL,
+	[Destination] INTEGER NOT NULL,
+	[AmountBegin] REAL NOT NULL,
+	[AmountEnd] INTEGER NOT NULL,
+	[Balance] REAL NOT NULL,
+	[TransactionCount] INTEGER NOT NULL,
+	FOREIGN KEY([Origin]) REFERENCES [Entity]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY([Destination]) REFERENCES [Entity]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE [TransactionReport] (
+	[Report] INTEGER NOT NULL,
+	[Transaction] TEXT NOT NULL,
+	PRIMARY KEY ([Report],[Transaction]),
+	FOREIGN KEY([Report]) REFERENCES [Report]([RegistrationDate]) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY([Transaction]) REFERENCES [Transaction]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE [ToUpload] (
+	[TableName] TEXT NOT NULL,
+	[RegistrationDate] TEXT NOT NULL,
+	PRIMARY KEY ([TableName],[RegistrationDate])
+);
+
+CREATE TABLE [PaymentMethod] (
+	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
+	[Name] TEXT NOT NULL
+);
+
+CREATE TABLE [TransactionPayment] (
+	[Transaction] TEXT NOT NULL,
+	[PaymentMethod] INTEGER NOT NULL,
+	[Amount] REAL NOT NULL,
+	[RegistrationDate] TEXT NOT NULL,
+	PRIMARY KEY ([Transaction],[PaymentMethod]),
+	FOREIGN KEY([Transaction]) REFERENCES [Transaction]([RegistrationDate]) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY([PaymentMethod]) REFERENCES [PaymentMethod]([RegistrationDate]) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+create view TransactionV as 
+select 
+	t.RegistrationDate,
+	t.Title,
+	t.Description,
+	t.Amount,
+	t.[Date],
+	t.Origin,
+	origin_entity.Name as OriginName,
+	t.Destination,
+	destination_entity.Name as DestinationName,
+	t.[Source],
+	s.Name as SourceName,
+	t.[Category],
+	c.Name as CategoryName
+from [Transaction] as t
+left join [Entity] as origin_entity on t.Origin = origin_entity.RegistrationDate
+left join [Entity] as destination_entity on t.Destination = destination_entity.RegistrationDate
+left join [Source] as s on t.[Source] = s.RegistrationDate
+left join [Category] as c on t.[Category] = c.RegistrationDate
+WHERE [IsEnabled] = 1;
+
+CREATE TRIGGER IF NOT EXISTS OnTransactionInsert AFTER INSERT ON [Transaction] BEGIN
+	INSERT INTO ToUpload VALUES ('Transaction', NEW.RegistrationDate);
+END;
+
+CREATE TRIGGER IF NOT EXISTS OnEntityInsert AFTER INSERT ON [Entity] BEGIN
+	INSERT INTO ToUpload VALUES ('Entity', NEW.RegistrationDate);
+END;
+
+CREATE TRIGGER IF NOT EXISTS OnTransactionUpdate AFTER UPDATE ON [Transaction] BEGIN
+	INSERT OR IGNORE INTO ToUpload VALUES ('Transaction', NEW.RegistrationDate);
+END;
+
+CREATE TRIGGER IF NOT EXISTS OnTransactionPaymentUpdate AFTER UPDATE ON [TransactionPayment] BEGIN
+	INSERT OR IGNORE INTO ToUpload VALUES ('TransactionPayment', NEW.RegistrationDate);
+END;
+
+CREATE TRIGGER IF NOT EXISTS OnEntityUpdate AFTER UPDATE ON [Entity] BEGIN
+	INSERT OR IGNORE INTO ToUpload VALUES ('Entity', NEW.RegistrationDate);
+END;

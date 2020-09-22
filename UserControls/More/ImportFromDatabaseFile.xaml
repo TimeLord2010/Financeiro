@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Financeiro.UserControls.More.ImportFromDatabaseFile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Financeiro.UserControls.More" xmlns:usercontrols="clr-namespace:Financeiro.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="600" Background="White">
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <CheckBox VerticalAlignment="Center">Transações</CheckBox>
+                <StackPanel Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Center">Intervalo</TextBlock>
+                    <usercontrols:DateInterval></usercontrols:DateInterval>
+                </StackPanel>
+            </Grid>
+            <CheckBox>Entidades</CheckBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

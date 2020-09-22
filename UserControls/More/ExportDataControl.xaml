@@ -1,0 +1,21 @@
+﻿<Window x:Class="Financeiro.UserControls.More.ExportDataControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financeiro.UserControls.More"
+        mc:Ignorable="d"
+        Title="Exportando..." Height="350" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Margin="5">
+            <StackPanel x:Name="LogSP"></StackPanel>
+        </ScrollViewer>
+        <ProgressBar Grid.Row="1" Margin="5" Name="MyProgressBar" Minimum="0"></ProgressBar>
+        <Button Style="{StaticResource GreenButton}" Grid.Row="5" Name="FecharB" IsEnabled="False" Click="FecharB_Click">Fechar</Button>
+    </Grid>
+</Window>

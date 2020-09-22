@@ -1,0 +1,7 @@
+insert into [PaymentMethod] values (1, 'Dinheiro'), (2, 'Débito'), (3, 'Crédito');
+
+insert into [Source] values (1, 'Sqlite'), (2, 'MySql'), (3, 'DynamoDB');
+
+insert into [Settings] values ('Database', 'clinica2'), ('UserID', 'root'), ('Password', '1025'), ('Server', '192.168.0.3');
+
+insert into [Entity] values (1, 'Clinica'), (2, 'Paciente');

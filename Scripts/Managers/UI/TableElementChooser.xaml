@@ -1,0 +1,33 @@
+﻿<Window x:Class="Financeiro.Managers.UI.TableElementChooser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financeiro.Managers.UI"
+        mc:Ignorable="d"
+        Title="Escolha" Height="300" Width="400" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Margin="5" Name="EntityNameTB"></TextBox>
+            <Button Grid.Column="1" Style="{StaticResource GreenButton}" x:Name="PesquisarB" Click="PesquisarB_Click">Pesquisar</Button>
+        </Grid>
+        <DataGrid Grid.Row="1" Margin="5" Name="ResultadosDG" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged" MouseDoubleClick="ResultadosDG_MouseDoubleClick" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="2">
+            <Button Style="{StaticResource GreenButton}" HorizontalAlignment="Left" x:Name="CriarB" Click="CriarB_Click">Criar</Button>
+            <Button Style="{StaticResource GreenButton}" IsEnabled="False" HorizontalAlignment="Right" x:Name="EscolherB" Click="EscolherB_Click">Escolher</Button>
+        </Grid>
+    </Grid>
+</Window>
