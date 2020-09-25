@@ -23,6 +23,7 @@ namespace Financeiro {
     public partial class MainWindow : Window {
 
         public MainWindow() {
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue));
             ErrorReporter.ShowMessage = (ex, title) => {
                 MessageBox.Show(ex.Message, title ?? $"{ex.GetType()}");
             };
@@ -31,7 +32,7 @@ namespace Financeiro {
                 var net_interfaces = NetworkInterface.GetAllNetworkInterfaces();
                 if (net_interfaces.Count() == 0) return;
                 var net_interface = net_interfaces.First();
-                var result = UploadToDynamoDBTable.Upload("financeiro_errors", new { 
+                var result = UploadToDynamoDBTable.Upload("financeiro_errors", new {
                     User = net_interface.GetPhysicalAddress().ToString() + " - " + Environment.UserName,
                     DateTime = DateTimeHelper.ToUnixTimestamp(dt),
                     DateTimeStr = $"{dt:yyyy/MM/dd HH:mm:ss}",
@@ -41,5 +42,6 @@ namespace Financeiro {
             };
             InitializeComponent();
         }
+
     }
 }

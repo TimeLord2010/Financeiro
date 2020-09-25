@@ -65,21 +65,18 @@ namespace Financeiro.Properties {
         ///DROP TABLE IF EXISTS [Entity];
         ///DROP TABLE IF EXISTS [Source];
         ///DROP TABLE IF EXISTS [Category];
+        ///DROP TABLE IF EXISTS [Settings];
         ///DROP TABLE IF EXISTS [CategoryRelationship];
         ///DROP TABLE IF EXISTS [Error];
         ///DROP TABLE IF EXISTS [Report];
         ///DROP TABLE IF EXISTS [TransactionReport];
         ///DROP TABLE IF EXISTS [ToUpload];
+        ///DROP TABLE IF EXISTS [PaymentMethod];
+        ///DROP TABLE IF EXISTS [TransactionPayment];
         ///
         ///CREATE TABLE [Entity] (
-        ///[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
-        ///[Name] TEXT NOT NULL);
-        ///
-        ///CREATE TABLE [Source] (
-        ///[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
-        ///[Name] TEXT NOT NULL);
-        ///
-        ///CREAT [rest of string was truncated]&quot;;.
+        ///	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,
+        ///	[Name] TEX [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DatabaseCreation {
             get {
@@ -88,7 +85,13 @@ namespace Financeiro.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to insert into [PaymentMethod] values (1, &apos;Dinheiro&apos;), (2, &apos;Débito&apos;), (3, &apos;Crédito&apos;);
+        ///
+        ///insert into [Source] values (1, &apos;Sqlite&apos;), (2, &apos;MySql&apos;), (3, &apos;DynamoDB&apos;);
+        ///
+        ///insert into [Settings] values (&apos;Database&apos;, &apos;clinica2&apos;), (&apos;UserID&apos;, &apos;root&apos;), (&apos;Password&apos;, &apos;1025&apos;), (&apos;Server&apos;, &apos;192.168.0.3&apos;);
+        ///
+        ///insert into [Entity] values (1, &apos;Clinica&apos;), (2, &apos;Paciente&apos;);.
         /// </summary>
         internal static string InitialData {
             get {

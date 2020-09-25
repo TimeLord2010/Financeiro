@@ -37,7 +37,7 @@ namespace Financeiro.UserControls {
             export.Show();
         }
 
-        private void AjudaB_Click(object sender, RoutedEventArgs e) {
+        private void ReportarB_Click(object sender, RoutedEventArgs e) {
 
         }
     }

@@ -10,19 +10,34 @@
         <TabControl Margin="5" Grid.Row="0">
             <TabItem Name="TransactionControlTI">
                 <TabItem.Header>
-                    <TextBlock FontSize="14" FontWeight="DemiBold">Transações</TextBlock>
+                    <TextBlock FontSize="14" FontWeight="DemiBold">
+                        Transações
+                        <TextBlock.ToolTip>
+                            <ToolTip>Controle as transações financeiras aqui. Elas não precisam envolver a clinica diretamente.</ToolTip>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
                 </TabItem.Header>
                 <usercontrols:TransactionControl x:Name="TransactionC"></usercontrols:TransactionControl>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock FontSize="14" FontWeight="DemiBold">Entidades</TextBlock>
+                    <TextBlock FontSize="14" FontWeight="DemiBold">
+                        Entidades
+                        <TextBlock.ToolTip>
+                            <ToolTip>Gerencie entidades atuadoras em transações aqui.</ToolTip>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
                 </TabItem.Header>
                 <usercontrols:EntityControl></usercontrols:EntityControl>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock FontSize="14" FontWeight="DemiBold">Mais</TextBlock>
+                    <TextBlock FontSize="14" FontWeight="DemiBold">
+                        Mais
+                        <TextBlock.ToolTip>
+                            <ToolTip>Opções e recursos extras.</ToolTip>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
                 </TabItem.Header>
                 <usercontrols:MoreControl></usercontrols:MoreControl>
             </TabItem>

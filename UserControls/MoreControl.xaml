@@ -16,9 +16,12 @@
                 <TextBlock VerticalAlignment="Center">Exportar para nuvem...</TextBlock>
                 <Button Style="{StaticResource GreenButton}" Name="ComecarExportarB" Click="ComecarExportarB_Click">Começar...</Button>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center">Reportar um bug...</TextBlock>
+                <Button Style="{StaticResource GreenButton}" Name="ReportarB" Click="ReportarB_Click">Reportar</Button>
+            </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Style="{StaticResource GreenButton}" Name="AjudaB" Click="AjudaB_Click">Ajuda</Button>
         </StackPanel>
     </Grid>
 </UserControl>

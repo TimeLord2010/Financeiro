@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:Financeiro"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="StaysOpen" Value="True"></Setter>
+        </Style>
         <Style TargetType="{x:Type TextBlock}" x:Key="CentererTBL">
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>

@@ -21,7 +21,11 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
                 <StackPanel Margin="5">
                     <TextBlock Style="{StaticResource TransactionsTBL}">Conteúdo</TextBlock>
-                    <TextBox Margin="0,0,0,5" Name="ConteudoTB"></TextBox>
+                    <TextBox Margin="0,0,0,5" Name="ConteudoTB">
+                        <TextBox.ToolTip>
+                            <ToolTip>Os resultados da pesquisa devem conter os caracteres, na ordem dada, em qualquer posição do título. Caso nenhum caractér seja dado, o campo título não vai ser filtrado.</ToolTip>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <CheckBox x:Name="IncluirDescricaoTB">Incluir descrição</CheckBox>
                     <Separator></Separator>
                     <TextBlock Style="{StaticResource TransactionsTBL}">Valor</TextBlock>
@@ -35,9 +39,17 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock>Mínimo</TextBlock>
-                        <xctk:MaskedTextBox Grid.Column="1" Margin="0,0,0,10" x:Name="ValorMinimoMTB"></xctk:MaskedTextBox>
+                        <TextBox Grid.Column="1" Margin="0,0,0,10" x:Name="ValorMinimoMTB">
+                            <TextBox.ToolTip>
+                                <ToolTip>Os resultados da pesquisa devem ter pelo menos o valor fornecido. Caso não seja dado, o valor mínimo se torna -10.000.</ToolTip>
+                            </TextBox.ToolTip>
+                        </TextBox>
                         <TextBlock Grid.Row="1">Máximo</TextBlock>
-                        <xctk:MaskedTextBox Grid.Row="1" Grid.Column="1" x:Name="ValorMaximoMTB"></xctk:MaskedTextBox>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ValorMaximoMTB">
+                            <TextBox.ToolTip>
+                                <ToolTip>Os resultados da pesquisa devem ter até o valor fornecido. Caso não seja dado, o valor máximo se torna 10.000.</ToolTip>
+                            </TextBox.ToolTip>
+                        </TextBox>
                     </Grid>
                     <Separator Grid.ColumnSpan="2"></Separator>
                     <Grid>
@@ -52,7 +64,11 @@
                             <ColumnDefinition Width="70"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Row="0" Style="{StaticResource TransactionsTBL}">Provedor</TextBlock>
-                        <local:ChooseEntity Grid.Row="1" Grid.ColumnSpan="2" TableName="Entity" x:Name="ProvedorCE"></local:ChooseEntity>
+                        <local:ChooseEntity Grid.Row="1" Grid.ColumnSpan="2" TableName="Entity" x:Name="ProvedorCE">
+                            <local:ChooseEntity.ToolTip>
+                                <ToolTip>Os resultados da pesquisa devem ter a origem (coluna “De”) com o valor da origem escolhida. Caso não seja fornecido, este campo não vai ser filtrado na pesquisa.</ToolTip>
+                            </local:ChooseEntity.ToolTip>
+                        </local:ChooseEntity>
                         <TextBlock Grid.Row="2" Style="{StaticResource TransactionsTBL}">Recebedor</TextBlock>
                         <local:ChooseEntity Grid.Row="3" Grid.ColumnSpan="2" TableName="Entity" x:Name="RecebedorCE"></local:ChooseEntity>
                     </Grid>
@@ -61,7 +77,12 @@
                     <local:DateInterval x:Name="DateIntervalDI"></local:DateInterval>
                 </StackPanel>
             </ScrollViewer>
-            <Button Grid.Row="2" Style="{StaticResource GreenButton}" Name="PesquisarB" Click="PesquisarB_Click">Pesquisar</Button>
+            <Button Grid.Row="2" Style="{StaticResource GreenButton}" Name="PesquisarB" Click="PesquisarB_Click">
+                Pesquisar
+                <Button.ToolTip>
+                    <ToolTip>Realizar pesquisa aplicando filtros.</ToolTip>
+                </Button.ToolTip>
+            </Button>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -106,7 +127,11 @@
                                     <Setter Property="Text" Value="0.0"></Setter>
                                 </Style>
                             </StackPanel.Resources>
-                            <TextBlock x:Name="ItemsCountTBL" Text="0"></TextBlock>
+                            <TextBlock x:Name="ItemsCountTBL" Text="0">
+                                <TextBlock.ToolTip>
+                                    <ToolTip>Número de items na tabela de pesquisa.</ToolTip>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
