@@ -1,0 +1,41 @@
+﻿<Window x:Class="Financeiro.UserControls.More.FeedbackControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Financeiro.UserControls.More"
+        mc:Ignorable="d"
+        Title="Feedback" Height="350" Width="350" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="5,3,5,3">
+            <TextBlock>Tipo</TextBlock>
+            <ComboBox SelectedIndex="0" x:Name="TypeCB">
+                <ComboBoxItem>Bug</ComboBoxItem>
+                <ComboBoxItem>Requerimento de novo recurso</ComboBoxItem>
+                <ComboBoxItem>Outro</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="5,3,5,3">
+            <TextBlock>Email (opcional)</TextBlock>
+            <TextBox x:Name="EmailTB"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="5,3,5,3">
+            <TextBlock x:Name="TitleTBL">Título</TextBlock>
+            <TextBox x:Name="TitleTB"></TextBox>
+        </StackPanel>
+        <Grid Grid.Row="3" Margin="5,3,5,3">
+            <TextBlock x:Name="DescriptionTBL">Descrição</TextBlock>
+            <TextBox Margin="0,18,0,0" VerticalAlignment="Stretch" Name="DescriptionTB"></TextBox>
+        </Grid>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Style="{StaticResource GreenButton}" Name="EnviarB" Click="EnviarB_Click">Enviar</Button>
+        </StackPanel>
+    </Grid>
+</Window>

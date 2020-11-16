@@ -121,5 +121,5 @@ C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\bin\x6
 C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\bin\x64\Debug\Newtonsoft.Json.xml
 C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Debug\UserControls\More\ExportDataControl.baml
 C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Debug\UserControls\TransactionControlChildren\EntityInfoControl.baml
-C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Debug\UserControls\More\HelpControl.g.cs
-C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Debug\UserControls\More\HelpControl.baml
+C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Debug\UserControls\More\FeedbackControl.g.cs
+C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Debug\UserControls\More\FeedbackControl.baml

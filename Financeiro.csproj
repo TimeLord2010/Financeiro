@@ -211,6 +211,9 @@
     <Compile Include="Scripts\DataStructures\Payments.cs" />
     <Compile Include="Scripts\DateTimeHelper.cs" />
     <Compile Include="Scripts\DB\DynamoDB\UploadToDynamoDBTable.cs" />
+    <Compile Include="Scripts\DB\MongoDB\FinanceiroMongoDB.cs" />
+    <Compile Include="Scripts\DB\Entities\MongoDB\Feedback.cs" />
+    <Compile Include="Scripts\DB\Entities\MongoDB\Users.cs" />
     <Compile Include="Scripts\DB\Entities\Sqlite\Category.cs" />
     <Compile Include="Scripts\DB\Entities\Enums\Entities.cs" />
     <Compile Include="Scripts\DB\Entities\Enums\PaymentMethods.cs" />
@@ -220,9 +223,11 @@
     <Compile Include="Scripts\DB\Entities\Sqlite\Transaction.cs" />
     <Compile Include="Scripts\DB\Entities\Sqlite\TransactionPayment.cs" />
     <Compile Include="Scripts\DB\Entities\Sqlite\TransactionV.cs" />
-    <Compile Include="Scripts\DB\MongoDBHelper.cs" />
+    <Compile Include="Scripts\DB\MongoDB\MongoDBHelper.cs" />
     <Compile Include="Scripts\DB\MysqlH.cs" />
     <Compile Include="Scripts\DB\MysqlReader.cs" />
+    <Compile Include="Scripts\Exceptions\NotLoggedIn.cs" />
+    <Compile Include="Scripts\Exceptions\SessionTimeout.cs" />
     <Compile Include="Scripts\Managers\ErrorReporter.cs" />
     <Compile Include="Scripts\Managers\MysqlFinanceiro.cs" />
     <Compile Include="Scripts\Managers\SimpleTableManager.cs" />
@@ -259,6 +264,9 @@
     <Compile Include="Scripts\DB\Entities\Mysql\Historico_ProcedimentosLab.cs" />
     <Compile Include="UserControls\More\ExportDataControl.xaml.cs">
       <DependentUpon>ExportDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\More\FeedbackControl.xaml.cs">
+      <DependentUpon>FeedbackControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\More\ImportFromDatabaseFile.xaml.cs">
       <DependentUpon>ImportFromDatabaseFile.xaml</DependentUpon>
@@ -322,6 +330,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\More\FeedbackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\More\ImportFromDatabaseFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -375,7 +387,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\DB\Entities\MongoDB\" />
     <Folder Include="UserControls\ChooseEntityControl\" />
   </ItemGroup>
   <ItemGroup>

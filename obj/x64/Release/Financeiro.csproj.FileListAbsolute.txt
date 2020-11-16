@@ -121,3 +121,5 @@ C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\bin\x6
 C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\bin\x64\Release\MongoDB.Bson.xml
 C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\bin\x64\Release\MongoDB.Driver.xml
 C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\bin\x64\Release\MongoDB.Driver.Core.xml
+C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Release\UserControls\More\FeedbackControl.g.cs
+C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\x64\Release\UserControls\More\FeedbackControl.baml

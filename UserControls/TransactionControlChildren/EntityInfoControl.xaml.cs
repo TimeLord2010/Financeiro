@@ -14,9 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Financeiro.UserControls.TransactionControlChildren {
-    /// <summary>
-    /// Interaction logic for EntityInfoControl.xaml
-    /// </summary>
+
     public partial class EntityInfoControl : UserControl {
         public EntityInfoControl() {
             InitializeComponent();

@@ -38,7 +38,10 @@ namespace Financeiro.UserControls {
         }
 
         private void ReportarB_Click(object sender, RoutedEventArgs e) {
-
+            var feedback = new FeedbackControl() { 
+                Owner = Window.GetWindow(this)
+            };
+            feedback.ShowDialog();
         }
     }
 }

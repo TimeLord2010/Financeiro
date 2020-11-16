@@ -156,6 +156,7 @@ namespace Financeiro.UserControls {
                 eic.Nome.Text = item.Value.EntityName;
                 eic.GastosTBL.Text = $"{item.Value.Expenses:0.00}";
                 eic.GanhosTBL.Text = $"{item.Value.Income:0.00}";
+                eic.TotalTBL.Text = $"{item.Value.Total:0.00}";
                 ResumoSP.Children.Add(eic);
             }
         }

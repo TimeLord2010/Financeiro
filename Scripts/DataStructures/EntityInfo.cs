@@ -19,7 +19,7 @@ namespace Financeiro.Scripts.DataStructures {
         public double Income { get; private set; }
 
         public double Total {
-            get => Expenses + Income;
+            get => Income - Expenses;
         }
 
         public double Operation {

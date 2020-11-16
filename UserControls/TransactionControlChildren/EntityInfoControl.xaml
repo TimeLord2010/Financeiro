@@ -19,10 +19,12 @@
         <StackPanel Grid.Row="1" Margin="0,0,5,0">
             <TextBlock>Ganhos:</TextBlock>
             <TextBlock>Gastos:</TextBlock>
+            <TextBlock>Total:</TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">
             <TextBlock x:Name="GanhosTBL" HorizontalAlignment="Right">0.0</TextBlock>
             <TextBlock x:Name="GastosTBL" HorizontalAlignment="Right">0.0</TextBlock>
+            <TextBlock x:Name="TotalTBL" HorizontalAlignment="Right">0.0</TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

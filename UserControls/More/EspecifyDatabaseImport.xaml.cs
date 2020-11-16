@@ -61,5 +61,11 @@ namespace Financeiro.UserControls.More {
                 WindowMaskHelper.Next(new ImportFromDatabaseServer());
             }
         }
+
+        private void BrowseB_Click(object sender, RoutedEventArgs e) {
+            if (WindowsSO.ChooseFile(out string fn)) {
+
+            }
+        }
     }
 }

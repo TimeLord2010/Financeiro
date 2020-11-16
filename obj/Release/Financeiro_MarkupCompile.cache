@@ -10,11 +10,11 @@ none
 false
 TRACE
 C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\App.xaml
-151365958859
-
-541774284125
-103552404680
-MainWindow.xaml;Scripts\Managers\UI\SimpleTableElementCreate.xaml;Scripts\Managers\UI\TableElementChooser.xaml;UserControls\ChooseEntity.xaml;UserControls\DateInterval.xaml;UserControls\EntityControl.xaml;UserControls\MoreControl.xaml;UserControls\More\EspecifyDatabaseImport.xaml;UserControls\More\ExportDataControl.xaml;UserControls\More\ImportFromDatabaseFile.xaml;UserControls\More\ImportFromDatabaseServer.xaml;UserControls\TransactionControl.xaml;UserControls\TransactionControlChildren\EntityInfoControl.xaml;UserControls\TransactionControlChildren\ExportControl.xaml;UserControls\TransactionControlChildren\InsertTransaction.xaml;
+16-1156205756
+71674771462
+60-1424593005
+108144145407
+MainWindow.xaml;Scripts\Managers\UI\SimpleTableElementCreate.xaml;Scripts\Managers\UI\TableElementChooser.xaml;UserControls\ChooseEntity.xaml;UserControls\DateInterval.xaml;UserControls\EntityControl.xaml;UserControls\MoreControl.xaml;UserControls\More\EspecifyDatabaseImport.xaml;UserControls\More\ExportDataControl.xaml;UserControls\More\FeedbackControl.xaml;UserControls\More\ImportFromDatabaseFile.xaml;UserControls\More\ImportFromDatabaseServer.xaml;UserControls\TransactionControl.xaml;UserControls\TransactionControlChildren\EntityInfoControl.xaml;UserControls\TransactionControlChildren\ExportControl.xaml;UserControls\TransactionControlChildren\InsertTransaction.xaml;
 
 False
 

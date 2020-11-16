@@ -12,7 +12,7 @@ namespace Financeiro.DB.Entities.Sqlite {
 
     public class TransactionV {
 
-        public TransactionV (SqliteHandler handler) {
+        public TransactionV(SqliteHandler handler) {
             Handler = handler;
         }
 
@@ -34,20 +34,24 @@ namespace Financeiro.DB.Entities.Sqlite {
         public long? Category { get; set; }
         public string CategoryName { get; set; }
 
-        public void Select (Action<TransactionV> for_each_row, string where_statement = "", uint limit = 2000, params (string, object)[] parameters) {
+        public void Select(Action<TransactionV> for_each_row, string where_statement = "", uint limit = 2000, params (string, object)[] parameters) {
             string ws = "";
             if (where_statement.Length > 0) {
                 ws = $"where {where_statement}";
             }
             Handler.QueryLoop($"Select * from TransactionV {ws} order by Date asc limit {limit}", (r) => {
+                var dt = DateTimeHelper.UnixTimeStampToDateTime((long)r["Date"]).ToString("dd/MM/yy HH:mm");
+                if (dt.EndsWith(" 00:00")) {
+                    dt = dt.Substring(0, 8);
+                }
                 var t = new TransactionV(null) {
                     RegistrationDate = r["RegistrationDate"] as string,
                     Title = r["Title"] as string,
                     Description = r["Description"] as string,
                     Amount = (double)r["Amount"],
                     Date = (long)r["Date"],
-                    DateStr = DateTimeHelper.UnixTimeStampToDateTime((long)r["Date"]).ToString("dd/MM/yy HH:mm"),
-                    Origin = Converter. TryToNullInt64(r["Origin"]),
+                    DateStr = dt,
+                    Origin = Converter.TryToNullInt64(r["Origin"]),
                     OriginName = r["OriginName"] as string,
                     Destination = Converter.TryToNullInt64(r["Destination"]),
                     DestinationName = r["DestinationName"] as string,
