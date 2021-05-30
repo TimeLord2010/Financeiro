@@ -1,6 +1,5 @@
 ﻿using Financeiro.DB.Entities.Enums;
 using Financeiro.DB.Entities.Sqlite;
-using MySql.Data.MySqlClient;
 using SqliteHelper;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPFClinica.Scripts.DB;
 
 namespace Financeiro.Managers {
 
@@ -66,20 +64,20 @@ namespace Financeiro.Managers {
             SimpleTableManager.Delete(registrationDate);
         }
 
-        public string InsertTransaction(Historico_Consultas consulta) {
-            Transaction.Title = $"Consulta - {consulta.Paciente}";
-            Transaction.Description = $"Funcionário: {consulta.Funcionario}\nEspecilização: {consulta.Especializacao}\nProfissão: {consulta.Profissao}\nRetorno: {consulta.Retorno}";
-            Transaction.Amount = consulta.Pago;
-            Transaction.Date = DateTimeHelper.ToUnixTimestamp(consulta.RealizadoEm);
-            Transaction.Source = (long)Sources.MySql;
-            Transaction.Origin = (long)Entities.Paciente;
-            Transaction.Destination = (long)Entities.Clinica;
-            var payments = consulta.GetPayment(consulta.ID);
-            var money = payments.FirstOrDefault(x => x.Item1 == PaymentMethods.Dinheiro);
-            var debit = payments.FirstOrDefault(x => x.Item1 == PaymentMethods.Debito);
-            var credit = payments.FirstOrDefault(x => x.Item1 == PaymentMethods.Credito);
-            return Transaction.Insert(money.Item2, debit.Item2, credit.Item2, 1);
-        }
+        //public string InsertTransaction(Historico_Consultas consulta) {
+        //    Transaction.Title = $"Consulta - {consulta.Paciente}";
+        //    Transaction.Description = $"Funcionário: {consulta.Funcionario}\nEspecilização: {consulta.Especializacao}\nProfissão: {consulta.Profissao}\nRetorno: {consulta.Retorno}";
+        //    Transaction.Amount = consulta.Pago;
+        //    Transaction.Date = DateTimeHelper.ToUnixTimestamp(consulta.RealizadoEm);
+        //    Transaction.Source = (long)Sources.MySql;
+        //    Transaction.Origin = (long)Entities.Paciente;
+        //    Transaction.Destination = (long)Entities.Clinica;
+        //    var payments = consulta.GetPayment(consulta.ID);
+        //    var money = payments.FirstOrDefault(x => x.Item1 == PaymentMethods.Dinheiro);
+        //    var debit = payments.FirstOrDefault(x => x.Item1 == PaymentMethods.Debito);
+        //    var credit = payments.FirstOrDefault(x => x.Item1 == PaymentMethods.Credito);
+        //    return Transaction.Insert(money.Item2, debit.Item2, credit.Item2, 1);
+        //}
 
         public string InsertTransaction(TransactionV tranV) {
             Transaction.Title = tranV.Title;

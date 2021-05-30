@@ -2,24 +2,13 @@
 using Financeiro.Managers;
 using Financeiro.Scripts;
 using Financeiro.Scripts.DataStructures;
-using Financeiro.Scripts.Managers;
 using Financeiro.UserControls.TransactionControlChildren;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using static System.Convert;
 
 namespace Financeiro.UserControls {
 
@@ -140,6 +129,7 @@ namespace Financeiro.UserControls {
         }
 
         public void UpdateSumary() {
+            if (ResumoSP == null) return;
             ResumoSP.Children.Clear();
             var eim = new EntityInfoManager();
             foreach (var item in TransactionsDG.Items) {
@@ -148,8 +138,20 @@ namespace Financeiro.UserControls {
                 }
             }
             var sorted = eim.Infos.ToList();
+            int propertySelector (EntityInfo info) {
+                double a = 0;
+                if (IncomeRB.IsChecked ?? false) {
+                    a = info.Income;
+                } else if (ExpenseRB.IsChecked ?? false) {
+                    a = info.Expenses;
+                } else {
+                    a = info.Total;
+                }
+                return ToInt32(a);
+            }
             sorted.Sort((x, y) => {
-                return GetLength(y.Value) - GetLength(x.Value);
+                //return GetLength(y.Value) - GetLength(x.Value);
+                return propertySelector(y.Value) - propertySelector(x.Value);
             });
             foreach (var item in sorted) {
                 var eic = new EntityInfoControl();
@@ -179,5 +181,8 @@ namespace Financeiro.UserControls {
             return true;
         }
 
+        private void SortChanged(object sender, RoutedEventArgs e) {
+            UpdateSumary();
+        }
     }
 }

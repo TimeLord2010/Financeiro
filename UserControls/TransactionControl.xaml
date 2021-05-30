@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid>
@@ -87,7 +87,7 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="110"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <DataGrid Margin="5,5,5,0" Name="TransactionsDG" ContextMenuOpening="TransactionsDG_ContextMenuOpening" SelectionChanged="TransactionsDG_SelectionChanged">
@@ -108,31 +108,32 @@
             </DataGrid>
             <Grid Grid.Row="1" Margin="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
+                    <Grid Margin="0,0,1,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel>
-                            <TextBlock>Items:</TextBlock>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <StackPanel.Resources>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-                                    <Setter Property="Text" Value="0.0"></Setter>
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock x:Name="ItemsCountTBL" Text="0">
-                                <TextBlock.ToolTip>
-                                    <ToolTip>Número de items na tabela de pesquisa.</ToolTip>
-                                </TextBlock.ToolTip>
-                            </TextBlock>
-                        </StackPanel>
+                        <TextBlock Grid.Row="0" Grid.Column="0">Items:</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" x:Name="ItemsCountTBL" Text="0" HorizontalAlignment="Right">
+                            <TextBlock.ToolTip>
+                                <ToolTip>Número de items na tabela de pesquisa.</ToolTip>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">Ordenar:</TextBlock>
+                        <RadioButton Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="IncomeRB" IsChecked="True" Checked="SortChanged">Ganhos</RadioButton>
+                        <RadioButton Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ExpenseRB" Checked="SortChanged">Gastos</RadioButton>
+                        <RadioButton Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TotalRB" Checked="SortChanged">Total</RadioButton>
                     </Grid>
                 </ScrollViewer>
                 <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

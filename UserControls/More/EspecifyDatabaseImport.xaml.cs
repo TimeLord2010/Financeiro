@@ -23,16 +23,16 @@ namespace Financeiro.UserControls.More {
         public EspecifyDatabaseImport() {
             InitializeComponent();
             var financeiro = new SqliteFinanceiro();
-            Mysql = new MysqlFinanceiro(financeiro);
-            var (db, user, pwd, server) = Mysql.Parameters;
-            DatabaseTB.Text = db;
-            UserTB.Text = user;
-            PasswordPB.Password = pwd;
-            ServerTB.Text = server;
+            //Mysql = new MysqlFinanceiro(financeiro);
+            //var (db, user, pwd, server) = Mysql.Parameters;
+            //DatabaseTB.Text = db;
+            //UserTB.Text = user;
+            //PasswordPB.Password = pwd;
+            //ServerTB.Text = server;
         }
 
         public WindowMaskHelper WindowMaskHelper { get; set; }
-        MysqlFinanceiro Mysql { get; }
+        //MysqlFinanceiro Mysql { get; }
 
         private void CancelarB_Click(object sender, RoutedEventArgs e) {
             WindowMaskHelper.ClearMask();
@@ -62,7 +62,7 @@ namespace Financeiro.UserControls.More {
                 }
                 WindowMaskHelper.Next(new ImportFromDatabaseFile(FileNameTB.Text));
             } else {
-                Mysql.Parameters = (DatabaseTB.Text, UserTB.Text, PasswordPB.Password, ServerTB.Text);
+                //Mysql.Parameters = (DatabaseTB.Text, UserTB.Text, PasswordPB.Password, ServerTB.Text);
                 WindowMaskHelper.Next(new ImportFromDatabaseServer());
             }
         }
