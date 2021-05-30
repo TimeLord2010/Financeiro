@@ -54,53 +54,65 @@ namespace Financeiro.UserControls.TransactionControlChildren {
         }
 
         private void ExportarB_Click(object sender, RoutedEventArgs e) {
-            if (!Directory.Exists(FolderPathTB.Text)) {
-                MessageBox.Show("Pasta não existe ou não é accessível.");
-            }
-            var mw = (MainWindow)App.Current.MainWindow;
-            var tran = mw.TransactionC;
-            if (DatabaseFileRB.IsChecked ?? false) {
-                var external_sqlite = new SqliteFinanceiro(FolderPathTB.Text + $"\\[{DateTime.Now:dd/MM/yyyy}] db.db");
-                external_sqlite.NonQuery(Properties.Resources.DatabaseCreation);
-                external_sqlite.NonQuery(Properties.Resources.InitialData);
-                foreach (var item in tran.TransactionsDG.Items) {
-                    var tranV = item as TransactionV;
-                    external_sqlite.InsertTransaction(tranV);
+            try {
+                if (!Directory.Exists(FolderPathTB.Text)) {
+                    throw new Exception("Pasta não existe ou não é accessível.");
                 }
-                WindowMaskHelper.ClearMask();
-            } else if (ExcelFileRB.IsChecked ?? false) {
-                using var sw = new StreamWriter(FolderPathTB.Text + $"\\[{DateTime.Now:dd-MM-yyyy}] Relatório Geral.csv", false, Encoding.UTF8);
-                using var relatorio_gastos = new StreamWriter($"{FolderPathTB.Text}\\[{DateTime.Now:dd-MM-yyyy}] Relatório de Gastos.csv", false, Encoding.UTF8);
-                var offset = Converter.TryToInt32(LinhaOffsetTB.Text, 0);
-                for (var i = 0; i < offset; i++) {
-                    sw.WriteLine();
-                    relatorio_gastos.WriteLine();
-                }
-                var coluns = new HashSet<string>();
-                var dt_columnValue = new Dictionary<string, Dictionary<string, double>>();
-                sw.WriteLine($"Título,Data,Valor,Provedor,Destinatário,Descrição");
-                foreach (var item in tran.TransactionsDG.Items) {
-                    var tranV = item as TransactionV;
-                    sw.WriteLine($"\"{tranV.Title}\",\"{tranV.DateStr}\",\"{tranV.Amount}\",\"{tranV.OriginName}\",\"{tranV.DestinationName}\",\"{tranV.Description}\"");
-                    if (tranV.Origin == 1) {
-                        coluns.Add(tranV.DestinationName ?? "Outros");
-                        var dt = DateTimeHelper.UnixTimeStampToDateTime(tranV.Date);
-                        var current_dt = $"{dt.Year}/{dt.Month}/{dt.Day}";
-                        if (!dt_columnValue.ContainsKey(current_dt)) dt_columnValue.Add(current_dt, new Dictionary<string, double>());
-                        var columnValue = dt_columnValue[current_dt];
-                        var destination_name = String.IsNullOrEmpty(tranV.DestinationName) ? "Outros" : tranV.DestinationName;
-                        if (!columnValue.ContainsKey(destination_name)) columnValue.Add(destination_name, 0);
-                        columnValue[destination_name] += tranV.Amount;
+                var mw = (MainWindow)App.Current.MainWindow;
+                var tran = mw.TransactionC;
+                if (DatabaseFileRB.IsChecked ?? false) {
+                    var fn = FolderPathTB.Text + $"\\[{DateTime.Now:yyyy-MM-dd HHmmss}] db.db";
+                    var external_sqlite = new SqliteFinanceiro(fn);
+                    external_sqlite.NonQuery(Properties.Resources.DatabaseCreation);
+                    external_sqlite.NonQuery(Properties.Resources.InitialData);
+                    foreach (var item in tran.TransactionsDG.Items) {
+                        var tranV = item as TransactionV;
+                        external_sqlite.EnsureEntity(tranV.Origin, tranV.OriginName);
+                        external_sqlite.EnsureEntity(tranV.Destination, tranV.DestinationName);
+                        external_sqlite.InsertTransaction(tranV);
                     }
+                    WindowMaskHelper.ClearMask();
+                } else if (ExcelFileRB.IsChecked ?? false) {
+                    using var sw = new StreamWriter(FolderPathTB.Text + $"\\[{DateTime.Now:dd-MM-yyyy}] Relatório Geral.csv", false, Encoding.UTF8);
+                    using var relatorio_gastos = new StreamWriter($"{FolderPathTB.Text}\\[{DateTime.Now:dd-MM-yyyy}] Relatório de Gastos.csv", false, Encoding.UTF8);
+                    var offset = Converter.TryToInt32(LinhaOffsetTB.Text, 0);
+                    for (var i = 0; i < offset; i++) {
+                        sw.WriteLine();
+                        relatorio_gastos.WriteLine();
+                    }
+                    var coluns = new HashSet<string>();
+                    var dt_columnValue = new Dictionary<string, Dictionary<string, double>>();
+                    sw.WriteLine($"Título,Data,Valor,Provedor,Destinatário,Descrição");
+                    foreach (var item in tran.TransactionsDG.Items) {
+                        var tranV = item as TransactionV;
+                        sw.WriteLine($"\"{tranV.Title}\",\"{tranV.DateStr}\",\"{tranV.Amount}\",\"{tranV.OriginName}\",\"{tranV.DestinationName}\",\"{tranV.Description}\"");
+                        if (tranV.Origin == 1) {
+                            coluns.Add(tranV.DestinationName ?? "Outros");
+                            var dt = DateTimeHelper.UnixTimeStampToDateTime(tranV.Date);
+                            var current_dt = $"{dt.Year}/{dt.Month}/{dt.Day}";
+                            if (!dt_columnValue.ContainsKey(current_dt)) dt_columnValue.Add(current_dt, new Dictionary<string, double>());
+                            var columnValue = dt_columnValue[current_dt];
+                            var destination_name = String.IsNullOrEmpty(tranV.DestinationName) ? "Outros" : tranV.DestinationName;
+                            if (!columnValue.ContainsKey(destination_name)) columnValue.Add(destination_name, 0);
+                            columnValue[destination_name] += tranV.Amount;
+                        }
+                    }
+                    var ordered_rows = coluns.ToArray();
+                    relatorio_gastos.WriteLine($"Data,{Join(",", ordered_rows)}");
+                    foreach (var item in dt_columnValue) {
+                        var dt = item.Key;
+                        var columnValue = item.Value;
+                        relatorio_gastos.WriteLine($"{dt},{Join(",", ordered_rows.Select(x => $"\"{columnValue.FirstOrDefault(y => y.Key == x).Value}\""))}");
+                    }
+                    WindowMaskHelper.ClearMask();
                 }
-                var ordered_rows = coluns.ToArray();
-                relatorio_gastos.WriteLine($"Data,{Join(",", ordered_rows)}");
-                foreach (var item in dt_columnValue) {
-                    var dt = item.Key;
-                    var columnValue = item.Value;
-                    relatorio_gastos.WriteLine($"{dt},{Join(",", ordered_rows.Select(x => $"\"{columnValue.FirstOrDefault(y => y.Key == x).Value}\""))}");
+            } catch (Exception ex) {
+                List<string> message = new List<string>() { ex.Message };
+                while (ex.InnerException != null) {
+                    message.Add(ex.InnerException.Message);
+                    ex = ex.InnerException;
                 }
-                WindowMaskHelper.ClearMask();
+                MessageBox.Show(Join("\n", message), "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -65,6 +65,9 @@
   <PropertyGroup>
     <ApplicationIcon>Custom-Icon-Design-Flatastic-11-Cash.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -92,6 +95,9 @@
     </Reference>
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Hash.xxHash.1.0.6\lib\net45\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <HintPath>packages\LumenWorksCsvReader.4.0.0\lib\net45\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
@@ -211,9 +217,6 @@
     <Compile Include="Scripts\DataStructures\Payments.cs" />
     <Compile Include="Scripts\DateTimeHelper.cs" />
     <Compile Include="Scripts\DB\DynamoDB\UploadToDynamoDBTable.cs" />
-    <Compile Include="Scripts\DB\MongoDB\FinanceiroMongoDB.cs" />
-    <Compile Include="Scripts\DB\Entities\MongoDB\Feedback.cs" />
-    <Compile Include="Scripts\DB\Entities\MongoDB\Users.cs" />
     <Compile Include="Scripts\DB\Entities\Sqlite\Category.cs" />
     <Compile Include="Scripts\DB\Entities\Enums\Entities.cs" />
     <Compile Include="Scripts\DB\Entities\Enums\PaymentMethods.cs" />
@@ -223,7 +226,6 @@
     <Compile Include="Scripts\DB\Entities\Sqlite\Transaction.cs" />
     <Compile Include="Scripts\DB\Entities\Sqlite\TransactionPayment.cs" />
     <Compile Include="Scripts\DB\Entities\Sqlite\TransactionV.cs" />
-    <Compile Include="Scripts\DB\MongoDB\MongoDBHelper.cs" />
     <Compile Include="Scripts\DB\MysqlH.cs" />
     <Compile Include="Scripts\DB\MysqlReader.cs" />
     <Compile Include="Scripts\Exceptions\NotLoggedIn.cs" />
@@ -377,6 +379,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

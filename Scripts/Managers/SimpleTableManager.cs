@@ -27,8 +27,8 @@ namespace Financeiro.Managers {
             });
         }
 
-        public long Insert(string name) {
-            var dt = DateTimeHelper.CurrentUnixTimeStamp;
+        public long Insert(string name, long? rd = null) {
+            var dt = rd ?? DateTimeHelper.CurrentUnixTimeStamp;
             Handler.NonQuery($"insert into [{TableName}] values (@rd, @n);", ("@rd", dt), ("@n", name));
             return dt;
         }

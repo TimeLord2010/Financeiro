@@ -54,7 +54,7 @@
                 <TextBlock Style="{StaticResource TransactionsTBL}">Destinatário</TextBlock>
                 <usercontrols:ChooseEntity x:Name="DestinatarioCE" TableName="Entity"></usercontrols:ChooseEntity>
                 <TextBlock Style="{StaticResource TransactionsTBL}">Descrição</TextBlock>
-                <TextBox Height="50" VerticalScrollBarVisibility="Visible" Name="DescriptionTB"></TextBox>
+                <TextBox Height="50" VerticalScrollBarVisibility="Visible" Name="DescriptionTB" AcceptsReturn="True" AcceptsTab="True"></TextBox>
             </StackPanel>
         </ScrollViewer>
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">

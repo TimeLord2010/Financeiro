@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS [TransactionReport];
 DROP TABLE IF EXISTS [ToUpload];
 DROP TABLE IF EXISTS [PaymentMethod];
 DROP TABLE IF EXISTS [TransactionPayment];
+DROP VIEW IF EXISTS [TransactionV];
 
 CREATE TABLE [Entity] (
 	[RegistrationDate] INTEGER PRIMARY KEY NOT NULL,

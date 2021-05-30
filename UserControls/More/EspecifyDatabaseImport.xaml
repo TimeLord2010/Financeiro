@@ -24,7 +24,7 @@
             <TextBlock>Servidor de banco de dados</TextBlock>
         </RadioButton>
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,0" IsEnabled="False" Name="DatabaseFileSP">
-            <TextBox Width="200"></TextBox>
+            <TextBox Width="200" Name="FileNameTB"></TextBox>
             <Button Style="{StaticResource GreenButton}" Name="BrowseB" Click="BrowseB_Click">Procurar</Button>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ServerDatabaseSP">

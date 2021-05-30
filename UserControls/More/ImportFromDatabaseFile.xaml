@@ -5,21 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Financeiro.UserControls.More" xmlns:usercontrols="clr-namespace:Financeiro.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="600" Background="White">
+             d:DesignHeight="350" d:DesignWidth="600" Background="White">
     <Grid>
-        <StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <CheckBox VerticalAlignment="Center">Transações</CheckBox>
-                <StackPanel Grid.Column="1">
-                    <TextBlock HorizontalAlignment="Center">Intervalo</TextBlock>
-                    <usercontrols:DateInterval></usercontrols:DateInterval>
-                </StackPanel>
-            </Grid>
-            <CheckBox>Entidades</CheckBox>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type CheckBox}">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style>
+        </Grid.Resources>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">File name</TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">Info</TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <CheckBox Grid.Row="0">Transações</CheckBox>
+            <CheckBox Grid.Row="1">Entidades</CheckBox>
+            <CheckBox Grid.Row="2">Categorias</CheckBox>
+            <StackPanel Grid.Row="3" Margin="5">
+                <TextBlock HorizontalAlignment="Center">Intervalo</TextBlock>
+                <usercontrols:DateInterval></usercontrols:DateInterval>
+            </StackPanel>
+            <StackPanel Margin="5" Grid.Row="4">
+                <TextBlock>Formato</TextBlock>
+                <TextBox x:Name="FormatoTB"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <ListView x:Name="ListInfoLV"></ListView>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Button Style="{StaticResource GreenButton}" HorizontalAlignment="Right" x:Name="StartB" Click="StartB_Click">Começar</Button>
+        </Grid>
     </Grid>
 </UserControl>

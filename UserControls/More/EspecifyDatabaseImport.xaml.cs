@@ -2,6 +2,7 @@
 using Financeiro.Scripts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,11 @@ namespace Financeiro.UserControls.More {
 
         private void NextB_Click(object sender, RoutedEventArgs e) {
             if (IsDatabaseFile) {
-                WindowMaskHelper.Next(new ImportFromDatabaseFile());
+                if (!File.Exists(FileNameTB.Text)) {
+                    MessageBox.Show("Arquivo não existe.");
+                    return;
+                }
+                WindowMaskHelper.Next(new ImportFromDatabaseFile(FileNameTB.Text));
             } else {
                 Mysql.Parameters = (DatabaseTB.Text, UserTB.Text, PasswordPB.Password, ServerTB.Text);
                 WindowMaskHelper.Next(new ImportFromDatabaseServer());
@@ -64,7 +69,7 @@ namespace Financeiro.UserControls.More {
 
         private void BrowseB_Click(object sender, RoutedEventArgs e) {
             if (WindowsSO.ChooseFile(out string fn)) {
-
+                FileNameTB.Text = fn;
             }
         }
     }

@@ -1,6 +1,4 @@
-﻿using Financeiro.Scripts.DB.Entities;
-using Financeiro.Scripts.DB.MongoDB;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,10 +23,9 @@ namespace Financeiro.UserControls.More {
             Timer.Start();
         }
 
-        DispatcherTimer Timer = new DispatcherTimer() { 
+        readonly DispatcherTimer Timer = new DispatcherTimer() { 
             Interval = TimeSpan.FromSeconds(2)
         };
-        FinanceiroMongoDB financeiroMongo = new FinanceiroMongoDB();
 
         private void Timer_Tick(object sender, EventArgs e) {
             if (DescriptionTB.Text.Length != 0) {
@@ -43,16 +40,11 @@ namespace Financeiro.UserControls.More {
             }
         }
 
-        private async void EnviarB_Click(object sender, RoutedEventArgs e) {
+        private void EnviarB_Click(object sender, RoutedEventArgs e) {
             try {
                 ShouldSend();
                 var selected = TypeCB.SelectedItem as ComboBoxItem;
                 var type = selected.Content.ToString();
-                await financeiroMongo.Feedback.Insert(
-                    type, 
-                    EmailTB.Text, 
-                    TitleTB.Text, 
-                    DescriptionTB.Text);
                 Close();
             } catch (Exception ex) {
                 MessageBox.Show(

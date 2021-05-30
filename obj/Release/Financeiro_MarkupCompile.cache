@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\Release\
+D:\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\obj\Release\
 Financeiro
 none
 false
 TRACE
-C:\Users\DESKTOP\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\App.xaml
+D:\Documents\Trabalho\Clinica\Financeiro\Project\Financeiro\App.xaml
 16-1156205756
-71674771462
-60-1424593005
-108144145407
+7-2008072833
+57822397935
+109-1108712128
 MainWindow.xaml;Scripts\Managers\UI\SimpleTableElementCreate.xaml;Scripts\Managers\UI\TableElementChooser.xaml;UserControls\ChooseEntity.xaml;UserControls\DateInterval.xaml;UserControls\EntityControl.xaml;UserControls\MoreControl.xaml;UserControls\More\EspecifyDatabaseImport.xaml;UserControls\More\ExportDataControl.xaml;UserControls\More\FeedbackControl.xaml;UserControls\More\ImportFromDatabaseFile.xaml;UserControls\More\ImportFromDatabaseServer.xaml;UserControls\TransactionControl.xaml;UserControls\TransactionControlChildren\EntityInfoControl.xaml;UserControls\TransactionControlChildren\ExportControl.xaml;UserControls\TransactionControlChildren\InsertTransaction.xaml;
 
-False
+True
 

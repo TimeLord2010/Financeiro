@@ -181,6 +181,15 @@ namespace Financeiro.Managers {
             SimpleTableManager.SelectLikeName(name, for_each_row);
         }
 
+        public void EnsureEntity (long? rd, string desc) {
+            if (rd == null) return;
+            SimpleTableManager.TableName = "Entity";
+            var _desc = SimpleTableManager.Get(rd);
+            if (_desc == null) {
+                SimpleTableManager.Insert(desc, rd);
+            }
+        }
+
         //public void UpdateTransaction () {
         //    Transaction.UpdateTransaction();
         //}
