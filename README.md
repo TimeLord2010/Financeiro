@@ -1,4 +1,4 @@
-# ClinicaFinanceiro
+# Financeiro
 
 Aplicativo em desenvolvimento para computadores desktop feito para administração de transações financeiras.
 
